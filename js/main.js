@@ -1,43 +1,42 @@
 var equation = '';
-var showEquation = '';
 var numOkay = true
 var optTrue = false
 
 $('.buttons').children().on('click', function(e) {
+  var clk = e.target.textContent
 
-  if (e.target.textContent === '=') {
+  if ( clk === '=') {
     if (optTrue) {
       equation = eval(equation);
       numOkay = false;
       optTrue = false;
     }
-  } else if (e.target.textContent === 'C') {
+  } else if (clk === 'C') {
     equation = '';
     numOkay = true;
     optTrue = false;
 
-  } else if (e.target.textContent === 'x') {
+  } else if (clk === 'x') {
     equation += '*';
     optTrue = true;
 
-  } else if (e.target.textContent === '\xF7') {
+  } else if (clk === '\xF7') {
     equation += '/';
     optTrue = true
 
-  } else if (e.target.textContent === '+') {
+  } else if (clk === '+') {
     equation += '+';
     optTrue = true;
 
-  } else if (e.target.textContent === '-') {
+  } else if (clk === '-') {
     equation += '-';
     optTrue = true;
 
   } else {
     if (numOkay === true || optTrue === true) {
-      equation += (e.target.textContent);
+      equation += (clk);
 
     }
   }
-  console.log(equation);
   $('#screen').html(equation)
 })
