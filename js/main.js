@@ -1,24 +1,43 @@
-
 var equation = '';
 var showEquation = '';
+var numOkay = true
+var optTrue = false
 
 $('.buttons').children().on('click', function(e) {
 
   if (e.target.textContent === '=') {
-    equation = eval(equation);
-    showEquation = equation
+    if (optTrue) {
+      equation = eval(equation);
+      numOkay = false;
+      optTrue = false;
+    }
   } else if (e.target.textContent === 'C') {
     equation = '';
-    showEquation = '';
+    numOkay = true;
+    optTrue = false;
+
   } else if (e.target.textContent === 'x') {
     equation += '*';
-    showEquation += 'x'
+    optTrue = true;
+
   } else if (e.target.textContent === '\xF7') {
     equation += '/';
-    showEquation += '\xF7'
+    optTrue = true
+
+  } else if (e.target.textContent === '+') {
+    equation += '+';
+    optTrue = true;
+
+  } else if (e.target.textContent === '-') {
+    equation += '-';
+    optTrue = true;
+
   } else {
-    equation += (e.target.textContent)
-    showEquation += (e.target.textContent)
+    if (numOkay === true || optTrue === true) {
+      equation += (e.target.textContent);
+
+    }
   }
-  $('#screen').html(showEquation)
+  console.log(equation);
+  $('#screen').html(equation)
 })
